@@ -9,13 +9,20 @@ const Gallery = () => {
   const [uploader, setUploader] = useState("");
   const [uploading, setUploading] = useState(false);
 
+  // Get backend URL from environment variable
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     fetchImages();
   }, []);
 
   const fetchImages = async () => {
-    const res = await axios.get('http://localhost:5000/api/gallery');
-    setImages(res.data);
+    try {
+      const res = await axios.get(`${API_URL}/api/gallery`);
+      setImages(res.data);
+    } catch (err) {
+      console.error("Error fetching images:", err);
+    }
   };
 
   const handleUpload = async (e) => {
@@ -28,12 +35,13 @@ const Gallery = () => {
 
     setUploading(true);
     try {
-      await axios.post('http://localhost:5000/api/gallery/upload', formData);
+      await axios.post(`${API_URL}/api/gallery/upload`, formData);
       fetchImages();
       setSelectedFile(null);
       setUploader("");
     } catch (err) {
       alert("Upload failed.");
+      console.error(err);
     } finally {
       setUploading(false);
     }
