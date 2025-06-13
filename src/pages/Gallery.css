@@ -1,0 +1,35 @@
+.gallery-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input, button {
+  margin: 5px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.image-card {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background-color: #fefefe;
+}
+
+.image-card img {
+  max-width: 100%;
+  border-radius: 8px;
+}
